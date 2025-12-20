@@ -24,7 +24,7 @@ input {
 }
 
 cursor {
-    // hide-when-typing
+    hide-when-typing
     hide-after-inactive-ms 10000
 }
 
@@ -58,7 +58,7 @@ binds {
     MOD+SHIFT+N { spawn-sh "alacritty -e nmtui"; }
 
     // File Manager
-    MOD+E                                     hotkey-overlay-title="File Manager: Dolphin" { spawn-sh "dolphin"; }
+    MOD+E                                     hotkey-overlay-title="File Manager: Nautilus" { spawn-sh "nautilus"; }
 
     // ─── Hardware Function Keys (Windows-Like) ───
 
@@ -83,7 +83,7 @@ binds {
     XF86AudioStop                         allow-when-locked=true { spawn-sh "playerctl stop"; }
 
     // 5. Calculator Key (If present)
-    XF86Calculator                        allow-when-locked=true { spawn-sh "kcalc"; }
+    XF86Calculator                        allow-when-locked=true { spawn-sh "gnome-calculator"; }
 
     // 6. Search Key (If present)
     XF86Search                            allow-when-locked=true { spawn-sh "fuzzel"; }
