@@ -1,0 +1,167 @@
+/* --- GLOBAL FONT & RESET --- */
+* {
+    font-family: "Material Design Icons", "JetBrainsMono Nerd Font", "Fira Sans Semibold", Roboto, sans-serif;
+    font-size: 16px;
+}
+
+/* --- THE BAR --- */
+window#waybar {
+    background-color: rgba(46, 53, 59, 0.9);
+    color: #EBF4DD;
+    border-radius: 8px;
+    border: 2px solid #5A7863;
+    transition: all 0.3s ease;
+}
+
+window#waybar.hidden { opacity: 0.1; }
+
+button:hover {
+    box-shadow: none;
+    text-shadow: none;
+    background-image: none;
+    border-color: transparent;
+}
+
+/* --- LEFT SIDE: APP ICONS --- */
+#group-window-module {
+background-color: #3B4953;
+color: #EBF4DD;
+margin: 6px 0 6px 10px;
+padding: 0 6px;
+border-radius: 8px;
+}
+
+#wlr-taskbar button {
+padding: 0 6px;
+margin: 0 2px;
+border-radius: 6px;
+background-color: transparent;
+border: none;
+color: #EBF4DD;
+transition: background-color 0.2s;
+}
+
+#wlr-taskbar button:hover {
+background-color: #5A7863;
+color: #EBF4DD;
+}
+
+#wlr-taskbar button.active {
+background-color: rgba(144, 171, 139, 0.2);
+}
+
+#wlr-taskbar button.active:hover {
+background-color: #5A7863;
+}
+
+#group-window-module.empty {
+background-color: transparent;
+padding: 0;
+margin: 0;
+}
+
+/* --- CENTER: WORKSPACES --- */
+#workspaces, #niri-workspaces {
+background-color: transparent;
+margin: 6px 0 6px 10px;
+padding: 0px;
+}
+
+#workspaces button, #niri-workspaces button {
+background-color: #3B4953;
+color: #EBF4DD;
+padding: 0 10px;
+margin-right: 4px;
+border-radius: 8px;
+transition: all 0.3s ease-in-out;
+}
+
+#workspaces button.active, #niri-workspaces button.active {
+background-color: #90AB8B;
+color: #2e353b;
+padding: 0px 14px;
+animation: button_activate 0.3s ease-in-out;
+}
+
+#workspaces button:hover, #niri-workspaces button:hover {
+background-color: #5A7863;
+color: #EBF4DD;
+}
+
+@keyframes button_activate {
+    from { opacity: 0.3; }
+    to { opacity: 1; }
+}
+
+/* --- RIGHT SIDE: CLEAN ICONS --- */
+#clock,
+#battery,
+#network,
+#bluetooth,
+#pulseaudio,
+#pulseaudio.microphone,
+#custom-cursor,
+#custom-exit,
+#tray {
+background-color: #3B4953;
+color: #EBF4DD;
+padding: 0 10px;
+margin: 6px 4px 6px 0;
+border-radius: 8px;
+font-weight: bold;
+min-width: 20px;
+}
+
+/* Hover effects */
+#clock:hover,
+#battery:hover,
+#network:hover,
+#bluetooth:hover,
+#pulseaudio:hover,
+#pulseaudio.microphone:hover,
+#custom-cursor:hover,
+#custom-exit:hover {
+background-color: #5A7863;
+color: #EBF4DD;
+}
+
+/* --- SPECIFIC MODULE COLORS --- */
+#clock { color: #90AB8B; padding: 0 14px; }
+#network.disconnected { color: #E78284; }
+#pulseaudio.muted { color: #E78284; }
+#pulseaudio { color: #90AB8B; }
+#battery { color: #90AB8B; }
+
+#battery.critical:not(.charging) {
+background-color: #E78284;
+color: #2e353b;
+animation: blink 0.5s linear infinite alternate;
+}
+
+
+/* Bluetooth specific */
+#bluetooth { color: #EBF4DD; }
+#bluetooth.connected { color: #90AB8B; }
+#bluetooth.off, #bluetooth.disabled { color: #E78284; }
+
+@keyframes blink { to { background-color: #EBF4DD; color: #3B4953; } }
+
+#custom-cursor.on { color: #90AB8B; }
+
+#custom-exit {
+background-color: #90AB8B;
+color: #2e353b;
+margin-right: 10px;
+padding: 0 10px;
+}
+
+#tray { margin-right: 10px; }
+#tray > .needs-attention { background-color: #5A7863; }
+
+/* Tooltips */
+tooltip {
+    background-color: #2e353b;
+    border: 2px solid #5A7863;
+    border-radius: 8px;
+}
+tooltip label { color: #EBF4DD; }

@@ -1,0 +1,69 @@
+/* Window Styling */
+.control-center {
+    background: rgba(46, 53, 59, 0.95); /* Deep Grey, slightly transparent */
+    border: 2px solid #5A7863;          /* Sage Green Border */
+    border-radius: 12px;
+    color: #EBF4DD;                     /* Cream Text */
+}
+
+/* Widget Container */
+.widget-title,
+.widget-dnd {
+    margin: 8px;
+    font-size: 1.2rem;
+}
+
+/* --- MUSIC PLAYER STYLING --- */
+.widget-mpris {
+    background: #3B4953;
+    padding: 8px;
+    margin: 12px;
+    border-radius: 12px;
+    color: #EBF4DD;
+}
+
+/* Album Art Background */
+.widget-mpris-player {
+    background-color: #3B4953;
+    padding: 8px;
+    border-radius: 12px;
+}
+
+/* Song Title */
+.widget-mpris-title {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #90AB8B; /* Sage Green */
+}
+
+/* Artist Name */
+.widget-mpris-subtitle {
+    font-size: 0.9rem;
+    color: #EBF4DD;
+}
+
+/* Buttons (Play, Pause, Next) */
+.widget-mpris button {
+    color: #EBF4DD;
+    background: transparent;
+    border-radius: 50%;
+    border: none;
+}
+
+.widget-mpris button:hover {
+    background: #5A7863;
+    color: #EBF4DD;
+}
+
+/* Notifications Styling */
+.notification-row {
+    outline: none;
+    margin: 10px;
+}
+
+.notification {
+    background: #3B4953;
+    border-radius: 12px;
+    border: 1px solid #5A7863;
+    margin: 6px 0;
+}

@@ -1,0 +1,118 @@
+{
+  "niri/workspaces": { "on-click": "activate" },
+
+  "wlr/taskbar": {
+    "format": "{icon}",
+    "icon-size": 18,
+    "tooltip-format": "{title}",
+    "on-click": "activate",
+    "on-click-middle": "close",
+    "ignore-list": [],
+    "app_ids-mapping": {
+      "firefoxdeveloperedition": "firefox-developer-edition",
+      "kitty": "terminal",
+      "Alacritty": "terminal",
+      "ghostty": "terminal",
+      "foot": "terminal"
+    },
+    "rewrite": { "Firefox Web Browser": "Firefox", "Foot Server": "Terminal" }
+  },
+
+  "bluetooth": {
+      "format": "",
+      "format-disabled": "",
+      "format-connected": "",
+      "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+      "tooltip-format-connected": "Connected: {device_enumerate}",
+      "on-click": "blueman-manager"
+  },
+
+  "network": {
+    "format": "{icon}",
+    "format-wifi": "{icon}",
+    "format-ethernet": " ",
+    "format-disconnected": " ",
+    "tooltip-format": "{ifname} via {gwaddr}",
+    "tooltip-format-wifi": "{essid} ({signalStrength}%)",
+    "format-icons": ["󰤯 ", "󰤟 ", "󰤢 ", "󰤥 ", "󰤨 "],
+    // FIXED: Uses Alacritty now
+    "on-click": "alacritty -e nmtui"
+  },
+
+  "pulseaudio": {
+    "format": "{icon}   {volume}%",
+    "format-bluetooth": "{icon}   {volume}%",
+    "format-muted": "   {volume}%",
+    "tooltip-format": "{volume}% {desc}",
+    "format-icons": {
+        "headphone": "",
+        "hands-free": "",
+        "headset": "",
+        "phone": "",
+        "portable": "",
+        "car": "",
+        "default": ["", "", ""]
+    },
+    "on-click": "pavucontrol"
+  },
+
+  "pulseaudio#microphone": {
+    "format": "{format_source}",
+    "format-source": "",
+    "format-source-muted": " ",
+    "tooltip-format": "Mic Volume: {volume}%",
+    "on-click": "pavucontrol -t 4",
+    "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
+    "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%+",
+    "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%-",
+    "scroll-step": 5
+  },
+
+  "battery": {
+    "states": { "warning": 30, "critical": 15 },
+    "format": "{icon}   {capacity}%",
+    "format-charging": "   {capacity}%",
+    "format-plugged": "   {capacity}%",
+    "tooltip-format": "{capacity}% - {timeTo}",
+    "format-icons": [" ", " ", " ", " ", " "],
+
+    // LEFT CLICK: Opens your new Power Profile Menu
+    "on-click": "~/.config/waybar/scripts/power_profile_menu.sh",
+
+    // RIGHT CLICK: Opens the graph (Statistics)
+    "on-click-right": "gnome-power-statistics"
+  },
+
+  "clock": {
+    "format": "{:%H:%M}",
+    "tooltip-format": "{:%Y-%m-%d | %H:%M}",
+    "on-click": "gnome-calendar"
+  },
+
+  "custom/cursor": {
+    "exec": "if grep -q '^[[:space:]]*hide-when-typing' ~/.config/niri/config.kdl; then echo '{\"text\": \"\", \"tooltip\": \"Hide Cursor: ON\", \"class\": \"on\"}'; else echo '{\"text\": \"\", \"tooltip\": \"Hide Cursor: OFF\", \"class\": \"off\"}'; fi",
+    "return-type": "json",
+    "interval": "once",
+    "signal": 8,
+    "on-click": "/home/aarok/.config/niri/scripts/toggle_cursor.sh",
+    "tooltip": true
+  },
+
+  "niri/window": {
+    "format": "{}",
+    "separate-outputs": true
+  },
+
+  "custom/empty": { "format": "" },
+
+  "custom/exit": {
+    "format": " 󰐥 ",
+    "on-click": "~/.config/waybar/scripts/power-menu.sh",
+    "tooltip-format": "Power Menu"
+  },
+
+  "tray": {
+    "icon-size": 21,
+    "spacing": 10
+  }
+}

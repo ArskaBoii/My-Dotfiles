@@ -1,0 +1,309 @@
+// Niri configuration for CachyOS
+// For documentation and full reference, see: https://github.com/YaLTeR/niri/wiki
+
+// ────────────── Input Configuration ──────────────
+input {
+    keyboard {
+        xkb {
+            layout "fi"
+            variant "nodeadkeys"
+        }
+    }
+
+    touchpad {
+        tap
+        natural-scroll
+        // This will be toggled by the script below
+    }
+
+    workspace-auto-back-and-forth
+
+    mouse {
+        accel-speed -0.4
+    }
+}
+
+cursor {
+    // hide-when-typing
+    hide-after-inactive-ms 10000
+}
+
+// ────────────── Output Configuration ──────────────
+output "eDP-1" {
+    mode "1920x1080@60.056"
+    scale 1.0
+}
+
+// ────────────── Keybindings ──────────────
+binds {
+    MOD+SHIFT+ESCAPE                             { show-hotkey-overlay; }
+
+    // ─── Applications ───
+    MOD+RETURN                                   hotkey-overlay-title="Open Terminal: alacritty" { spawn-sh "alacritty"; }
+    MOD+D                                        hotkey-overlay-title="Open App Launcher: fuzzel" { spawn-sh "fuzzel"; }
+    MOD+B                                        hotkey-overlay-title="Open Browser: Helium" { spawn-sh "helium-browser"; }
+    // Performance Engine: Thorium (For YouTube, Games, Heavy Sites)
+    MOD+ALT+L                                    hotkey-overlay-title="Lock Screen: swaylock" { spawn-sh "swaylock"; }
+
+    // ─── Power Controls (F3-F6) ───
+    MOD+F3 { quit; }
+    MOD+F4 { spawn-sh "systemctl suspend"; }
+    MOD+F5 { spawn-sh "systemctl reboot"; }
+    MOD+F6 { spawn-sh "systemctl poweroff"; }
+
+    // ─── Toggles & Scripts ───
+    MOD+ALT+C { spawn-sh "~/.config/niri/scripts/toggle_cursor.sh"; }
+
+    // Network Manager TUI in Alacritty
+    MOD+SHIFT+N { spawn-sh "alacritty -e nmtui"; }
+
+    // File Manager
+    MOD+E                                     hotkey-overlay-title="File Manager: Dolphin" { spawn-sh "dolphin"; }
+
+    // ─── Hardware Function Keys (Windows-Like) ───
+
+    // 1. Touchpad Toggle (Usually Fn+F9 or dedicated key)
+    XF86TouchpadToggle allow-when-locked=true { spawn-sh "~/.config/niri/scripts/toggle_touchpad.sh"; }
+
+    // 2. Brightness (with SwayOSD)
+    XF86MonBrightnessUp   allow-when-locked=true { spawn-sh "swayosd-client --brightness raise"; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn-sh "swayosd-client --brightness lower"; }
+
+    // 3. Audio Controls (with SwayOSD Popups)
+    XF86AudioRaiseVolume    allow-when-locked=true { spawn-sh "swayosd-client --output-volume +5 --max-volume 100"; }
+    XF86AudioLowerVolume    allow-when-locked=true { spawn-sh "swayosd-client --output-volume -5"; }
+    XF86AudioMute           allow-when-locked=true { spawn-sh "swayosd-client --output-volume mute-toggle"; }
+    XF86AudioMicMute        allow-when-locked=true { spawn-sh "swayosd-client --input-volume mute-toggle"; }
+
+    // 4. Media Controls (Play, Pause, Next, Prev)
+    XF86AudioNext                         allow-when-locked=true { spawn-sh "playerctl next"; }
+    XF86AudioPause                        allow-when-locked=true { spawn-sh "playerctl play-pause"; }
+    XF86AudioPlay                         allow-when-locked=true { spawn-sh "playerctl play-pause"; }
+    XF86AudioPrev                         allow-when-locked=true { spawn-sh "playerctl previous"; }
+    XF86AudioStop                         allow-when-locked=true { spawn-sh "playerctl stop"; }
+
+    // 5. Calculator Key (If present)
+    XF86Calculator                        allow-when-locked=true { spawn-sh "kcalc"; }
+
+    // 6. Search Key (If present)
+    XF86Search                            allow-when-locked=true { spawn-sh "fuzzel"; }
+
+    // ─── Window Movement and Focus ───
+    MOD+Q                                        { close-window; }
+
+    MOD+LEFT                                     { focus-column-left; }
+    MOD+H                                        { focus-column-left; }
+    MOD+RIGHT                                    { focus-column-right; }
+    MOD+L                                        { focus-column-right; }
+    MOD+UP                                       { focus-window-up; }
+    MOD+K                                        { focus-window-up; }
+    MOD+DOWN                                     { focus-window-down; }
+    MOD+J                                        { focus-window-down; }
+
+    MOD+CTRL+LEFT                                { move-column-left; }
+    MOD+CTRL+H                                   { move-column-left; }
+    MOD+CTRL+RIGHT                               { move-column-right; }
+    MOD+CTRL+L                                   { move-column-right; }
+    MOD+CTRL+UP                                  { move-window-up; }
+    MOD+CTRL+K                                   { move-window-up; }
+    MOD+CTRL+DOWN                                { move-window-down; }
+    MOD+CTRL+J                                   { move-window-down; }
+
+    MOD+HOME                                     { focus-column-first; }
+    MOD+END                                      { focus-column-last; }
+    MOD+CTRL+HOME                                { move-column-to-first; }
+    MOD+CTRL+END                                 { move-column-to-last; }
+
+    MOD+SHIFT+LEFT                               { focus-monitor-left; }
+    MOD+SHIFT+RIGHT                              { focus-monitor-right; }
+    MOD+SHIFT+UP                                 { focus-monitor-up; }
+    MOD+SHIFT+DOWN                               { focus-monitor-down; }
+
+    MOD+SHIFT+CTRL+LEFT                          { move-column-to-monitor-left; }
+    MOD+SHIFT+CTRL+RIGHT                         { move-column-to-monitor-right; }
+    MOD+SHIFT+CTRL+UP                            { move-column-to-monitor-up; }
+    MOD+SHIFT+CTRL+DOWN                          { move-column-to-monitor-down; }
+
+    // ─── Special Binds (Finnish Layout) ───
+    MOD+R { switch-preset-column-width; }
+    MOD+M { maximize-column; }
+    MOD+COMMA  { consume-or-expel-window-left; }
+    MOD+PERIOD { consume-or-expel-window-right; }
+    MOD+SHIFT+T { switch-focus-between-floating-and-tiling; }
+
+    // ─── Workspace Switching ───
+    MOD+WHEELSCROLLDOWN                  cooldown-ms=150 { focus-workspace-down; }
+    MOD+WHEELSCROLLUP                    cooldown-ms=150 { focus-workspace-up; }
+    MOD+CTRL+WHEELSCROLLDOWN             cooldown-ms=150 { move-column-to-workspace-down; }
+    MOD+CTRL+WHEELSCROLLUP               cooldown-ms=150 { move-column-to-workspace-up; }
+
+    MOD+WHEELSCROLLRIGHT                 { focus-column-right; }
+    MOD+WHEELSCROLLLEFT                  { focus-column-left; }
+    MOD+CTRL+WHEELSCROLLRIGHT            { move-column-right; }
+    MOD+CTRL+WHEELSCROLLLEFT             { move-column-left; }
+
+    MOD+SHIFT+WHEELSCROLLDOWN            { focus-column-right; }
+    MOD+SHIFT+WHEELSCROLLUP              { focus-column-left; }
+    MOD+CTRL+SHIFT+WHEELSCROLLDOWN       { move-column-right; }
+    MOD+CTRL+SHIFT+WHEELSCROLLUP         { move-column-left; }
+
+    MOD+1                                { focus-workspace 1; }
+    MOD+2                                { focus-workspace 2; }
+    MOD+3                                { focus-workspace 3; }
+    MOD+4                                { focus-workspace 4; }
+    MOD+5                                { focus-workspace 5; }
+    MOD+6                                { focus-workspace 6; }
+    MOD+7                                { focus-workspace 7; }
+    MOD+8                                { focus-workspace 8; }
+    MOD+9                                { focus-workspace 9; }
+
+    MOD+CTRL+1                           { move-column-to-workspace 1; }
+    MOD+CTRL+2                           { move-column-to-workspace 2; }
+    MOD+CTRL+3                           { move-column-to-workspace 3; }
+    MOD+CTRL+4                           { move-column-to-workspace 4; }
+    MOD+CTRL+5                           { move-column-to-workspace 5; }
+    MOD+CTRL+6                           { move-column-to-workspace 6; }
+    MOD+CTRL+7                           { move-column-to-workspace 7; }
+    MOD+CTRL+8                           { move-column-to-workspace 8; }
+    MOD+CTRL+9                           { move-column-to-workspace 9; }
+
+    MOD+TAB                              { focus-workspace-previous; }
+
+    // ---Clipboard--- //
+    MOD+V { spawn-sh "cliphist list | fuzzel --dmenu | cliphist decode | wl-copy"; }
+
+    // ─── Layout Controls ───
+    MOD+CTRL+F                           { expand-column-to-available-width; }
+    MOD+C                                { center-column; }
+    MOD+CTRL+C                           { center-visible-columns; }
+    MOD+MINUS                            { set-column-width "-10%"; }
+    MOD+PLUS                             { set-column-width "+10%"; }
+    MOD+SHIFT+MINUS                      { set-window-height "-10%"; }
+    MOD+SHIFT+PLUS                       { set-window-height "+10%"; }
+
+    // ─── Modes ───
+    MOD+T                                { toggle-window-floating; }
+    MOD+F                                { fullscreen-window; }
+    MOD+W                                { toggle-column-tabbed-display; }
+
+    // ─── Screenshots ───
+    Print                                { screenshot; }
+    CTRL+Print                           { screenshot-screen; }
+    ALT+Print                            { screenshot-window; }
+
+    CTRL+SHIFT+1                         { screenshot; }
+    CTRL+SHIFT+2                         { screenshot-screen; }
+    CTRL+SHIFT+3                         { screenshot-window; }
+
+    // ─── Emergency Escape ───
+    MOD+ESCAPE                           allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
+
+    // ─── Exit / Power ───
+    CTRL+ALT+DELETE                      { quit; }
+    MOD+SHIFT+P                          { power-off-monitors; }
+    MOD+O                                repeat=false { toggle-overview; }
+}
+
+// ────────────── Startup Applications ──────────────
+spawn-sh-at-startup "/usr/lib/polkit-kde-authentication-agent-1 &"
+spawn-sh-at-startup "swww-daemon"
+spawn-at-startup "xwayland-satellite"
+spawn-at-startup "mako"
+spawn-at-startup "swaync"
+spawn-sh-at-startup "swayosd-server"
+
+// Wallpaper
+spawn-sh-at-startup "swww img /home/aarok/Pictures/4w8jxyi56if41.jpg --transition-type grow --transition-pos 0.5,0.5 --transition-step 10 --transition-fps 60"
+spawn-sh-at-startup "sleep 3.2 && waybar"
+// Idle Handler
+spawn-sh-at-startup "swayidle -w timeout 120 '/home/aarok/.config/niri/scripts/idle_handler.sh dim' resume '/home/aarok/.config/niri/scripts/idle_handler.sh restore'"
+spawn-sh-at-startup "wl-paste --type text --watch cliphist store" // Stores text
+spawn-sh-at-startup "wl-paste --type image --watch cliphist store" // Stores images
+
+prefer-no-csd
+screenshot-path null
+
+// ────────────── Layout Settings ──────────────
+layout {
+    gaps 16
+    center-focused-column "never"
+
+    preset-column-widths {
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+    }
+
+    focus-ring {
+        width 3
+        active-color "#90AB8B"
+        inactive-color "#3B4953"
+    }
+
+    shadow {
+        // Reduced from 30/5 to 15/2 to save GPU power
+        softness 15
+        spread 2
+        offset x=0 y=4
+        color "#0007"
+    }
+}
+
+// ────────────── Animation Settings ──────────────
+animations {
+    workspace-switch { spring damping-ratio=1.0 stiffness=1000 epsilon=0.0001; }
+    window-open { duration-ms 200; curve "ease-out-quad"; }
+    window-close { duration-ms 200; curve "ease-out-cubic"; }
+    horizontal-view-movement { spring damping-ratio=1.0 stiffness=900 epsilon=0.0001; }
+    window-movement { spring damping-ratio=1.0 stiffness=800 epsilon=0.0001; }
+    window-resize { spring damping-ratio=1.0 stiffness=1000 epsilon=0.0001; }
+    config-notification-open-close { spring damping-ratio=0.6 stiffness=1200 epsilon=0.001; }
+    screenshot-ui-open { duration-ms 300; curve "ease-out-quad"; }
+    overview-open-close { spring damping-ratio=1.0 stiffness=900 epsilon=0.0001; }
+}
+
+// ────────────── Window Rules ──────────────
+window-rule {
+    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    open-floating true
+}
+
+window-rule {
+    geometry-corner-radius 20
+    clip-to-geometry true
+}
+
+// Gaming Performance Fix
+window-rule {
+    match app-id=r#"spacestation14"#
+    match title="Space Station 14"
+    geometry-corner-radius 0
+    clip-to-geometry false
+    opacity 1.0
+}
+
+// ────────────── Environment Variables ──────────────
+environment {
+    // 1. Standard Wayland Identifiers
+    XDG_SESSION_TYPE "wayland"
+    XDG_CURRENT_DESKTOP "niri"
+
+    // 2. Performance Optimizations (Intel HD 520)
+    mesa_glthread "true"
+    LIBVA_DRIVER_NAME "iHD"
+    WEBKIT_GST_DMABUF_SINK_ENABLED "1"
+
+    // 3. Application Fixes
+    MOZ_ENABLE_WAYLAND "1"
+    ELECTRON_OZONE_PLATFORM_HINT "auto"
+    QT_QPA_PLATFORM "wayland"
+    QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
+
+    // 4. Theming (Dark Mode & Cursor)
+    XCURSOR_THEME "Bibata-Modern-Ice"
+    XCURSOR_SIZE "24"
+}
+
+hotkey-overlay {
+    skip-at-startup
+}

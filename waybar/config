@@ -1,0 +1,39 @@
+{
+    "layer": "top",
+    "margin-top": 15,
+    "margin-left": 15,
+    "margin-right": 15,
+    "margin-bottom": 0,
+    "spacing": 0,
+
+    "include": [
+        "~/.config/waybar/modules.json"
+    ],
+
+    "modules-left": [
+        "group/window-module"
+    ],
+
+    "modules-center": [
+        "niri/workspaces"
+    ],
+
+    "modules-right": [
+        "tray",
+        "pulseaudio",
+        "pulseaudio#microphone",
+        "custom/cursor",
+        "bluetooth",
+        "network",
+        "battery",
+        "clock",
+        "custom/exit"
+    ],
+
+    "group/window-module": {
+        "orientation": "horizontal",
+        "modules": [
+            "wlr/taskbar"
+        ]
+    }
+}
