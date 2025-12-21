@@ -10,7 +10,22 @@ window#waybar {
     color: #EBF4DD;
     border-radius: 8px;
     border: 2px solid #5A7863;
-    transition: all 0.3s ease;
+}
+
+#custom-drawer {
+background-color: #3B4953;
+color: #90AB8B;            /* Sage Green (Matches Battery/Clock) */
+font-size: 20px;
+margin: 6px 0 6px 10px;
+padding: 0 14px;
+border-radius: 8px;
+transition: all 0.3s ease; /* The smooth fade effect */
+}
+
+#custom-drawer:hover {
+background-color: #5A7863; /* Sage Background */
+color: #EBF4DD;            /* White/Cream Text */
+box-shadow: 0 0 5px rgba(0,0,0,0.3);
 }
 
 window#waybar.hidden { opacity: 0.1; }
@@ -110,6 +125,9 @@ margin: 6px 4px 6px 0;
 border-radius: 8px;
 font-weight: bold;
 min-width: 20px;
+
+/* ADD THIS LINE FOR THE FADE EFFECT */
+transition: all 0.3s ease;
 }
 
 /* Hover effects */

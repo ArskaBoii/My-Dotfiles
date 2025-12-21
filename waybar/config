@@ -11,7 +11,7 @@
     ],
 
     "modules-left": [
-        "group/window-module"
+        "custom/drawer"
     ],
 
     "modules-center": [
