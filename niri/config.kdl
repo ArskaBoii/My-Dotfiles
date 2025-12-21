@@ -24,7 +24,7 @@ input {
 }
 
 cursor {
-    hide-when-typing
+    // hide-when-typing
     hide-after-inactive-ms 10000
 }
 
@@ -210,7 +210,6 @@ binds {
 spawn-sh-at-startup "/usr/lib/polkit-kde-authentication-agent-1 &"
 spawn-sh-at-startup "swww-daemon"
 spawn-at-startup "xwayland-satellite"
-spawn-at-startup "mako"
 spawn-at-startup "swaync"
 spawn-sh-at-startup "swayosd-server"
 spawn-at-startup "~/.config/niri/scripts/window_limiter.sh"

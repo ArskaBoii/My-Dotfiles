@@ -1,53 +1,70 @@
-/* Window Styling */
+/* --- 1. ANIMATION DEFINITION --- */
+@keyframes slide-in {
+    0% {
+        opacity: 0;
+        transform: translateX(300px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* --- 2. GLOBAL SETTINGS --- */
+* {
+    font-family: "JetBrainsMono Nerd Font", Roboto, sans-serif;
+    font-size: 14px;
+}
+
+/* --- 3. CONTROL CENTER (Sidebar) --- */
 .control-center {
-    background: rgba(46, 53, 59, 0.95); /* Deep Grey, slightly transparent */
-    border: 2px solid #5A7863;          /* Sage Green Border */
+    background: #2E353B;       /* Solid Deep Grey */
+    border: 2px solid #5A7863; /* Sage Green Border */
     border-radius: 12px;
-    color: #EBF4DD;                     /* Cream Text */
+    color: #EBF4DD;
+    box-shadow: none;          /* NO SHADOW */
 }
 
 /* Widget Container */
 .widget-title,
 .widget-dnd {
-    margin: 8px;
+    margin: 12px;
     font-size: 1.2rem;
+    color: #EBF4DD;
 }
 
-/* --- MUSIC PLAYER STYLING --- */
+/* --- 4. MUSIC PLAYER STYLING --- */
 .widget-mpris {
     background: #3B4953;
     padding: 8px;
     margin: 12px;
     border-radius: 12px;
     color: #EBF4DD;
+    border: 1px solid #5A7863;
 }
 
-/* Album Art Background */
 .widget-mpris-player {
-    background-color: #3B4953;
     padding: 8px;
     border-radius: 12px;
 }
 
-/* Song Title */
 .widget-mpris-title {
     font-weight: bold;
     font-size: 1.1rem;
-    color: #90AB8B; /* Sage Green */
+    color: #90AB8B;
 }
 
-/* Artist Name */
 .widget-mpris-subtitle {
     font-size: 0.9rem;
     color: #EBF4DD;
 }
 
-/* Buttons (Play, Pause, Next) */
 .widget-mpris button {
     color: #EBF4DD;
     background: transparent;
     border-radius: 50%;
     border: none;
+    padding: 6px;
 }
 
 .widget-mpris button:hover {
@@ -55,15 +72,43 @@
     color: #EBF4DD;
 }
 
-/* Notifications Styling */
+/* --- 5. NOTIFICATION POPUP (The sliding part) --- */
 .notification-row {
     outline: none;
-    margin: 10px;
+    margin: 6px 12px;
 }
 
 .notification {
-    background: #3B4953;
-    border-radius: 12px;
-    border: 1px solid #5A7863;
-    margin: 6px 0;
+    background: #2E353B;       /* Solid Deep Grey */
+    border: 2px solid #5A7863; /* Sage Green Border */
+    border-radius: 8px;
+    padding: 0;
+
+    /* REMOVED SHADOW HERE */
+    box-shadow: none;
+
+    /* THE SLIDE ANIMATION */
+    animation: slide-in 0.25s cubic-bezier(0.1, 0.9, 0.2, 1);
+}
+
+.notification-content {
+    background: transparent;
+    padding: 12px;
+}
+
+.summary {
+    color: #90AB8B;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.body {
+    color: #EBF4DD;
+    margin-top: 4px;
+}
+
+.time {
+    color: #6C7A85;
+    font-size: 11px;
+    margin-right: 10px;
 }
