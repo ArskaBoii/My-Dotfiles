@@ -38,6 +38,8 @@ output "eDP-1" {
 binds {
     MOD+SHIFT+ESCAPE                             { show-hotkey-overlay; }
 
+    MOD+SHIFT+O { spawn-sh "grim -g \"$(slurp)\" - | tesseract - - -l eng+fin | wl-copy"; }
+
     // ─── Applications ───
     MOD+RETURN                                   hotkey-overlay-title="Open Terminal: alacritty" { spawn-sh "alacritty"; }
     MOD+D                                        hotkey-overlay-title="Open App Launcher: fuzzel" { spawn-sh "fuzzel"; }
@@ -211,6 +213,7 @@ spawn-at-startup "xwayland-satellite"
 spawn-at-startup "mako"
 spawn-at-startup "swaync"
 spawn-sh-at-startup "swayosd-server"
+spawn-at-startup "~/.config/niri/scripts/window_limiter.sh"
 
 // Wallpaper
 spawn-sh-at-startup "swww img /home/aarok/Pictures/4w8jxyi56if41.jpg --transition-type grow --transition-pos 0.5,0.5 --transition-step 10 --transition-fps 60"
