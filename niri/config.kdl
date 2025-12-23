@@ -12,9 +12,12 @@ input {
 
     touchpad {
         tap
+        dwt             // <--- This stops the cursor jumping while typing!
         natural-scroll
-        // This will be toggled by the script below
     }
+
+    // REMOVE THE "input SynPS/2..." LINES COMPLETELY.
+    // Niri doesn't support disabling devices that way yet.
 
     workspace-auto-back-and-forth
 
@@ -63,9 +66,6 @@ binds {
     MOD+E                                     hotkey-overlay-title="File Manager: Nautilus" { spawn-sh "nautilus"; }
 
     // ─── Hardware Function Keys (Windows-Like) ───
-
-    // 1. Touchpad Toggle (Usually Fn+F9 or dedicated key)
-    XF86TouchpadToggle allow-when-locked=true { spawn-sh "~/.config/niri/scripts/toggle_touchpad.sh"; }
 
     // 2. Brightness (with SwayOSD)
     XF86MonBrightnessUp   allow-when-locked=true { spawn-sh "swayosd-client --brightness raise"; }
