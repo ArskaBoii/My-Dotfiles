@@ -5,16 +5,12 @@
 }
 
 /* --- THE BAR --- */
+
 window#waybar {
     background-color: rgba(46, 53, 59, 0.9);
     color: #EBF4DD;
-
-    /* 0px for top corners, 8px for bottom corners */
-    border-radius: 0 0 8px 8px;
-
+    border-radius: 8px;
     border: 2px solid #5A7863;
-    /* Remove the top border so it blends seamlessly with the monitor bezel */
-    border-top: none;
 }
 
 #custom-drawer {
