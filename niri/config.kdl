@@ -171,6 +171,11 @@ binds {
 
     MOD+TAB                              { focus-workspace-previous; }
 
+    // Kando //
+
+    // Press Mod+Space to open your Kando menu
+    Mod+Space { spawn "kando" "--menu" "Example Menu"; }
+
     // ---Clipboard--- //
     MOD+V { spawn-sh "cliphist list | fuzzel --dmenu | cliphist decode | wl-copy"; }
 
@@ -271,6 +276,13 @@ animations {
 window-rule {
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
     open-floating true
+}
+
+window-rule {
+    match title="Kando Menu"
+    open-floating true
+    border { off; }
+    shadow { off; }
 }
 
 window-rule {
