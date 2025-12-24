@@ -46,7 +46,7 @@ binds {
     // ─── Applications ───
     MOD+RETURN                                   hotkey-overlay-title="Open Terminal: alacritty" { spawn-sh "alacritty"; }
     MOD+D                                        hotkey-overlay-title="Open App Launcher: fuzzel" { spawn-sh "fuzzel"; }
-    MOD+B                                        hotkey-overlay-title="Open Browser: Helium" { spawn-sh "helium-browser"; }
+    MOD+B                                        hotkey-overlay-title="Open Browser: Zen<" { spawn-sh "zen-browser"; }
     // Performance Engine: Thorium (For YouTube, Games, Heavy Sites)
     MOD+ALT+L                                    hotkey-overlay-title="Lock Screen: swaylock" { spawn-sh "swaylock"; }
 
@@ -213,6 +213,7 @@ spawn-at-startup "xwayland-satellite"
 spawn-at-startup "swaync"
 spawn-sh-at-startup "swayosd-server"
 spawn-at-startup "~/.config/niri/scripts/window_limiter.sh"
+spawn-at-startup "solaar" "--window=hide"
 
 // Wallpaper: Removed transition type, step, and pos for instant load
 spawn-sh-at-startup "swww img /home/aarok/Pictures/4w8jxyi56if41.jpg"
