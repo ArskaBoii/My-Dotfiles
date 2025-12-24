@@ -19,7 +19,7 @@
   },
 
   "custom/drawer": {
-    "format": "",
+    "format": " ",
     "tooltip": false,
     "on-click": "~/.config/waybar/scripts/window_drawer.sh",
     "tooltip-format": "List all windows"

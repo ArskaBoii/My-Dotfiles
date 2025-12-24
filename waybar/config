@@ -1,8 +1,8 @@
- {
+{
     "layer": "top",
-    "margin-top": 15,
-    "margin-left": 15,
-    "margin-right": 15,
+    "margin-top": 0,
+    "margin-left": 0,
+    "margin-right": 0,
     "margin-bottom": 0,
     "spacing": 0,
 
@@ -11,12 +11,12 @@
     ],
 
     "modules-left": [
-        "custom/drawer"
+        "custom/drawer",
+        "niri/workspaces",
+        "niri/window"
     ],
 
-    "modules-center": [
-        "niri/workspaces"
-    ],
+    "modules-center": [],
 
     "modules-right": [
         "tray",
@@ -28,12 +28,5 @@
         "battery",
         "clock",
         "custom/exit"
-    ],
-
-    "group/window-module": {
-        "orientation": "horizontal",
-        "modules": [
-            "wlr/taskbar"
-        ]
-    }
+    ]
 }

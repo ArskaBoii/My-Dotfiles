@@ -1,187 +1,109 @@
-/* --- GLOBAL FONT & RESET --- */
+/* --- GLOBAL RESET --- */
 * {
-    font-family: "Material Design Icons", "JetBrainsMono Nerd Font", "Fira Sans Semibold", Roboto, sans-serif;
-    font-size: 16px;
+    font-family: "JetBrainsMono Nerd Font", "Fira Sans Semibold", Roboto, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    border-radius: 0;
 }
 
 /* --- THE BAR --- */
-
 window#waybar {
-    background-color: rgba(46, 53, 59, 0.9);
-    color: #EBF4DD;
-    border-radius: 8px;
-    border: 2px solid #5A7863;
+    background-color: rgba(30, 35, 40, 0.8); /* Dark Glass */
+    color: #90AB8B; /* DEFAULT COLOR: Sage Green for everything */
+    border-bottom: none;
+    transition: all 0.5s ease;
 }
 
-#custom-drawer {
-background-color: #3B4953;
-color: #90AB8B;            /* Sage Green (Matches Battery/Clock) */
-font-size: 20px;
-margin: 6px 0 6px 10px;
-padding: 0 14px;
-border-radius: 8px;
-transition: all 0.3s ease; /* The smooth fade effect */
-}
-
-#custom-drawer:hover {
-background-color: #5A7863; /* Sage Background */
-color: #EBF4DD;            /* White/Cream Text */
-box-shadow: 0 0 5px rgba(0,0,0,0.3);
-}
-
-window#waybar.hidden { opacity: 0.1; }
-
-button:hover {
-    box-shadow: none;
-    text-shadow: none;
-    background-image: none;
-    border-color: transparent;
-}
-
-/* --- LEFT SIDE: APP ICONS --- */
-#group-window-module {
-background-color: #3B4953;
-color: #EBF4DD;
-margin: 6px 0 6px 10px;
-padding: 0 6px;
-border-radius: 8px;
-}
-
-#wlr-taskbar button {
-padding: 0 6px;
-margin: 0 2px;
+/* --- MODULES (Standard) --- */
+#custom-drawer, #workspaces, #niri-workspaces, #niri-window,
+#pulseaudio, #pulseaudio.microphone, #custom-cursor,
+#bluetooth, #network, #battery, #clock, #custom-exit {
+background-color: transparent;
+color: #90AB8B;        /* Icons are Green by default */
+padding: 0 12px;
+margin: 4px 6px;
 border-radius: 6px;
-background-color: transparent;
-border: none;
-color: #EBF4DD;
-transition: background-color 0.2s;
+transition: all 0.3s ease;
 }
 
-#wlr-taskbar button:hover {
-background-color: #5A7863;
-color: #EBF4DD;
-}
-
-#wlr-taskbar button.active {
-background-color: rgba(144, 171, 139, 0.2);
-}
-
-#wlr-taskbar button.active:hover {
-background-color: #5A7863;
-}
-
-#group-window-module.empty {
-background-color: transparent;
-padding: 0;
-margin: 0;
-}
-
-/* --- CENTER: WORKSPACES --- */
-#workspaces, #niri-workspaces {
-background-color: transparent;
-margin: 6px 0 6px 10px;
-padding: 0px;
-}
-
-#workspaces button, #niri-workspaces button {
-background-color: #3B4953;
-color: #EBF4DD;
+/* --- WINDOW TITLE --- */
+#niri-window {
+color: #EBF4DD; /* Keep the window title Cream/White to make it distinct? Or Green? */
+/* Let's keep it Sage Green to match your request */
+color: #90AB8B;
 padding: 0 10px;
-margin-right: 4px;
-border-radius: 8px;
-transition: all 0.3s ease-in-out;
+}
+window#waybar.empty #niri-window {
+    background-color: transparent;
 }
 
-#workspaces button.active, #niri-workspaces button.active {
-background-color: #90AB8B;
-color: #2e353b;
-padding: 0px 14px;
-animation: button_activate 0.3s ease-in-out;
+/* --- WORKSPACES --- */
+#workspaces button, #niri-workspaces button {
+padding: 0 6px;
+color: #90AB8B;
+
+/* ADDED THIS LINE: Rounds the corners */
+border-radius: 6px;
 }
 
 #workspaces button:hover, #niri-workspaces button:hover {
 background-color: #5A7863;
+color: #FFFFFF;
+box-shadow: none;
+}
+
+#workspaces button.active, #niri-workspaces button.active {
 color: #EBF4DD;
+background-color: rgba(144, 171, 139, 0.15);
+border-bottom: 2px solid #90AB8B;
 }
 
-@keyframes button_activate {
-    from { opacity: 0.3; }
-    to { opacity: 1; }
+/* --- INTERACTIVE HOVER EFFECTS --- */
+/* When hovering: Background turns Green, Icon/Text turns White */
+#custom-drawer:hover, #custom-exit:hover, #custom-cursor:hover,
+#pulseaudio:hover, #pulseaudio.microphone:hover,
+#bluetooth:hover, #network:hover, #battery:hover, #clock:hover {
+background-color: #5A7863; /* The Darker Sage Green Background */
+color: #FFFFFF;            /* White Icon */
 }
 
-/* --- RIGHT SIDE: CLEAN ICONS --- */
-#clock,
-#battery,
-#network,
-#bluetooth,
-#pulseaudio,
-#pulseaudio.microphone,
-#custom-cursor,
-#custom-exit,
+/* --- TRAY (Passive "Inwards" Slot) --- */
 #tray {
-background-color: #3B4953;
-color: #EBF4DD;
-padding: 0 10px;
-margin: 6px 4px 6px 0;
-border-radius: 8px;
-font-weight: bold;
-min-width: 20px;
-
-/* ADD THIS LINE FOR THE FADE EFFECT */
-transition: all 0.3s ease;
+background-color: rgba(0, 0, 0, 0.15);
+box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.15);
+color: #90AB8B; /* Tray icons are also Green */
+padding: 0 18px;
+margin: 4px 6px;
+border-radius: 6px;
 }
 
-/* Hover effects */
-#clock:hover,
-#battery:hover,
-#network:hover,
-#bluetooth:hover,
-#pulseaudio:hover,
-#pulseaudio.microphone:hover,
-#custom-cursor:hover,
-#custom-exit:hover {
-background-color: #5A7863;
-color: #EBF4DD;
-}
+/* --- STATUS COLORS (Overrides) --- */
+/* These force specific colors when something is wrong/active */
 
-/* --- SPECIFIC MODULE COLORS --- */
-#clock { color: #90AB8B; padding: 0 14px; }
-#network.disconnected { color: #E78284; }
+#network.disconnected { color: #E78284; } /* Red */
+/* Connected is just normal green, so we don't need a specific rule unless you want it brighter */
+
 #pulseaudio.muted { color: #E78284; }
-#pulseaudio { color: #90AB8B; }
-#battery { color: #90AB8B; }
+#pulseaudio.microphone.source-muted { color: #E78284; text-decoration: line-through; }
+
+#bluetooth.off, #bluetooth.disabled { color: #6c7086; } /* Grey for off */
 
 #battery.critical:not(.charging) {
 background-color: #E78284;
-color: #2e353b;
+color: #1e1e1e;
 animation: blink 0.5s linear infinite alternate;
 }
 
+#custom-cursor.on { color: #E78284; } /* Red = Hidden */
+#custom-exit { color: #E78284; }      /* Exit button is Red by default */
 
-/* Bluetooth specific */
-#bluetooth { color: #EBF4DD; }
-#bluetooth.connected { color: #90AB8B; }
-#bluetooth.off, #bluetooth.disabled { color: #E78284; }
-
-@keyframes blink { to { background-color: #EBF4DD; color: #3B4953; } }
-
-#custom-cursor.on { color: #90AB8B; }
-
-
-#custom-exit {
-background-color: #90AB8B;
-color: #2e353b;
-margin-right: 10px;
-padding: 0 10px;
+/* Exit button hover specific */
+#custom-exit:hover {
+background-color: #E78284;
+color: #1e1e1e;
 }
 
-#tray { margin-right: 10px; }
-#tray > .needs-attention { background-color: #5A7863; }
-
-/* Tooltips */
-tooltip {
-    background-color: #2e353b;
-    border: 2px solid #5A7863;
-    border-radius: 8px;
+@keyframes blink {
+    to { background-color: #ffffff; color: #000000; }
 }
-tooltip label { color: #EBF4DD; }

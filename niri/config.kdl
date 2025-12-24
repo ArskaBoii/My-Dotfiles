@@ -45,7 +45,8 @@ binds {
 
     // ─── Applications ───
     MOD+RETURN                                   hotkey-overlay-title="Open Terminal: alacritty" { spawn-sh "alacritty"; }
-    MOD+D                                        hotkey-overlay-title="Open App Launcher: fuzzel" { spawn-sh "fuzzel"; }
+    MOD+D                                        hotkey-overlay-title="Open App Launcher: Fuzzel" { spawn-sh "fuzzel"; }
+    MOD+S                                        { spawn-sh "~/.config/niri/scripts/control_center.sh"; }
     MOD+B                                        hotkey-overlay-title="Open Browser: Zen<" { spawn-sh "zen-browser"; }
     // Performance Engine: Thorium (For YouTube, Games, Heavy Sites)
     MOD+ALT+L                                    hotkey-overlay-title="Lock Screen: swaylock" { spawn-sh "swaylock"; }
@@ -225,6 +226,7 @@ spawn-sh-at-startup "swww img /home/aarok/Pictures/4w8jxyi56if41.jpg"
 
 // Waybar: Removed the sleep delay so it appears immediately
 spawn-at-startup "waybar"
+spawn-at-startup "nwg-dock-hyprland" "-d" "-i" "48"
 // Idle Handler
 spawn-sh-at-startup "swayidle -w timeout 120 '/home/aarok/.config/niri/scripts/idle_handler.sh dim' resume '/home/aarok/.config/niri/scripts/idle_handler.sh restore'"
 spawn-sh-at-startup "wl-paste --type text --watch cliphist store" // Stores text
@@ -283,6 +285,14 @@ window-rule {
     open-floating true
     border { off; }
     shadow { off; }
+}
+
+window-rule {
+    match app-id="rofi"
+    open-floating true
+    border { off; }
+    shadow { on; }
+    // Niri will apply the "window-open" animation to this automatically!
 }
 
 window-rule {
