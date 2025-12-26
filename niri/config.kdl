@@ -57,6 +57,9 @@ binds {
     MOD+F5 { spawn-sh "systemctl reboot"; }
     MOD+F6 { spawn-sh "systemctl poweroff"; }
 
+    //Auto Clicker //
+    MOD+SHIFT+E { spawn-sh "~/.config/niri/scripts/auto_enter.sh"; }
+
     // ─── Toggles & Scripts ───
     MOD+ALT+C { spawn-sh "~/.config/niri/scripts/toggle_cursor.sh"; }
 
