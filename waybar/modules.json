@@ -85,16 +85,16 @@
     "format-icons": [" ", " ", " ", " ", " "],
 
     // LEFT CLICK: Opens your new Power Profile Menu
-    "on-click": "~/wlogout",
+    "on-click": "~/.config/waybar/scripts/power_profile_menu.sh",
 
     // RIGHT CLICK: Opens the graph (Statistics)
-    "on-click-right": "mission-center"
+    "on-click-right": "gnome-power-statistics"
   },
 
   "clock": {
     "format": "{:%H:%M}",
     "tooltip-format": "{:%Y-%m-%d | %H:%M}",
-    "on-click": "swaync-client -t -sw"
+    "on-click": "gnome-calendar"
   },
 
   "custom/cursor": {
@@ -115,7 +115,6 @@
 
   "custom/exit": {
     "format": " 󰐥 ",
-    // CHANGED: Now launches your graphical menu
     "on-click": "wlogout",
     "tooltip-format": "Power Menu"
   },

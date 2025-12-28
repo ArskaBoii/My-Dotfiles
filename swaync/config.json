@@ -19,20 +19,15 @@
   "hide-on-clear": false,
   "hide-on-action": true,
   "script-fail-notify": true,
-
   "widgets": [
-    "title",
-    "buttons-grid",
-    "dnd",
     "mpris",
-    "volume",
-    "backlight",
+    "title",
+    "dnd",
     "notifications"
   ],
-
   "widget-config": {
     "title": {
-      "text": "Control Center",
+      "text": "Notifications",
       "clear-all-button": true,
       "button-text": "Clear All"
     },
@@ -42,37 +37,6 @@
     "mpris": {
       "image-size": 90,
       "image-radius": 10
-    },
-    "volume": {
-        "label": " "
-    },
-    "backlight": {
-        "label": "󰃠 ",
-        "sub-node": "label"
-    },
-    "buttons-grid": {
-      "actions": [
-        {
-          "label": "",
-          "command": "/home/aarok/.config/niri/scripts/toggle_nightlight.sh"
-        },
-        {
-          "label": "",
-          "command": "nm-connection-editor"
-        },
-        {
-          "label": "",
-          "command": "blueman-manager"
-        },
-        {
-          "label": " ",
-          "command": "nwg-look"
-        },
-        {
-          "label": "",
-          "command": "wlogout"
-        }
-      ]
     }
   }
 }
