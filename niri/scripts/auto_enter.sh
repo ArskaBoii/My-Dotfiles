@@ -3,21 +3,25 @@
 LOCK_FILE="/tmp/auto_enter.lock"
 
 if [ -f "$LOCK_FILE" ]; then
-    # --- STOP ---
     kill $(cat "$LOCK_FILE")
     rm "$LOCK_FILE"
     notify-send -a "Auto Clicker" "Stopped" -u low
 else
-    # --- START ---
-    notify-send -a "Auto Clicker" "Started (Pressing 'e')" -u low
+    notify-send -a "Auto Clicker" "Started (Holding 'e')" -u low
 
     (
         echo $BASHPID > "$LOCK_FILE"
         while true; do
-            # xdotool is safer for games running in XWayland
-            xdotool key e
+            # 1. Press Key Down
+            xdotool keydown e
 
-            # Sleep 2-3 seconds
+            # 2. Wait 0.1 seconds (100ms) so the game sees it
+            sleep 0.1
+
+            # 3. Release Key
+            xdotool keyup e
+
+            # 4. Wait for the next loop
             sleep $(awk -v min=2 -v max=3 'BEGIN{srand(); print min+rand()*(max-min)}')
         done
     ) &

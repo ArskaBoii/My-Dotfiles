@@ -51,6 +51,9 @@ binds {
     // Performance Engine: Thorium (For YouTube, Games, Heavy Sites)
     MOD+ALT+L                                    hotkey-overlay-title="Lock Screen: swaylock" { spawn-sh "swaylock"; }
 
+
+    MOD+N { spawn-sh "swaync-client -t -sw"; }
+
     // ─── Power Controls (F3-F6) ───
     MOD+F3 { quit; }
     MOD+F4 { spawn-sh "systemctl suspend"; }
@@ -181,6 +184,7 @@ binds {
     Mod+Space { spawn "kando" "--menu" "Example Menu"; }
 
     // ---Clipboard--- //
+    // ---Clipboard--- //
     MOD+V { spawn-sh "cliphist list | fuzzel --dmenu | cliphist decode | wl-copy"; }
 
     // ─── Layout Controls ───
@@ -216,7 +220,8 @@ binds {
 }
 
 // ────────────── Startup Applications ──────────────
-spawn-sh-at-startup "/usr/lib/polkit-kde-authentication-agent-1 &"
+// Start Polkit GNOME (The new, clean one)
+spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 spawn-sh-at-startup "swww-daemon"
 spawn-at-startup "xwayland-satellite"
 spawn-at-startup "swaync"
@@ -230,6 +235,14 @@ spawn-sh-at-startup "swww img /home/aarok/Pictures/4w8jxyi56if41.jpg"
 // Waybar: Removed the sleep delay so it appears immediately
 spawn-at-startup "waybar"
 spawn-at-startup "nwg-dock-hyprland" "-d" "-i" "48"
+
+// Start Night Light (Temp: 6500K Day / 3500K Night)
+// Location: Ylöjärvi, Finland
+spawn-at-startup "gammastep" "-l" "61.5:23.6" "-t" "6500:3500"
+
+// Auto-mount USB drives and show tray icon
+spawn-at-startup "udiskie" "-t"
+
 // Idle Handler
 spawn-sh-at-startup "swayidle -w timeout 120 '/home/aarok/.config/niri/scripts/idle_handler.sh dim' resume '/home/aarok/.config/niri/scripts/idle_handler.sh restore'"
 spawn-sh-at-startup "wl-paste --type text --watch cliphist store" // Stores text
