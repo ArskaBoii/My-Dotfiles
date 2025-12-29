@@ -215,23 +215,33 @@ binds {
 }
 
 // ────────────── Startup Applications ──────────────
-spawn-sh-at-startup "/usr/lib/polkit-kde-authentication-agent-1 &"
-spawn-sh-at-startup "swww-daemon"
+
+// 1. Authentication Agent (Fixed: Changed from KDE to GNOME)
+spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
+
+// 2. Core Daemons
+spawn-at-startup "swww-daemon"
 spawn-at-startup "xwayland-satellite"
 spawn-at-startup "swaync"
-spawn-sh-at-startup "swayosd-server"
-spawn-at-startup "~/.config/niri/scripts/window_limiter.sh"
+spawn-at-startup "swayosd-server"
 spawn-at-startup "solaar" "--window=hide"
 
-// Wallpaper: Removed transition type, step, and pos for instant load
+// 3. Force GNOME Settings (Cursor & Dark Mode Fix)
+spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "cursor-theme" "Bibata-Modern-Ice"
+
+// 4. Custom Scripts
+spawn-at-startup "~/.config/niri/scripts/window_limiter.sh"
+
+// 5. Wallpaper (Instant Load)
 spawn-sh-at-startup "swww img /home/aarok/Pictures/4w8jxyi56if41.jpg"
 
-// Waybar: Removed the sleep delay so it appears immediately
+// 6. Waybar
 spawn-at-startup "waybar"
-// Idle Handler
-spawn-sh-at-startup "swayidle -w timeout 120 '/home/aarok/.config/niri/scripts/idle_handler.sh dim' resume '/home/aarok/.config/niri/scripts/idle_handler.sh restore'"
-spawn-sh-at-startup "wl-paste --type text --watch cliphist store" // Stores text
-spawn-sh-at-startup "wl-paste --type image --watch cliphist store" // Stores images
+
+// 7. Idle & Clipboard
+spawn-at-startup "swayidle" "-w" "timeout" "120" "/home/aarok/.config/niri/scripts/idle_handler.sh dim" "resume" "/home/aarok/.config/niri/scripts/idle_handler.sh restore"
+spawn-at-startup "wl-paste" "--type" "text" "--watch" "cliphist" "store"
+spawn-at-startup "wl-paste" "--type" "image" "--watch" "cliphist" "store"
 
 prefer-no-csd
 screenshot-path null

@@ -1,10 +1,27 @@
-/* --- GLOBAL RESET --- */
+/* --- GLOBAL RESET (Applies to Workspaces, Icons, etc) --- */
 * {
-    font-family: "JetBrainsMono Nerd Font", "Fira Sans Semibold", Roboto, sans-serif;
+    /* Google Sans for the 'Vibe' */
+    font-family: "Google Sans", "JetBrainsMono Nerd Font", Roboto, sans-serif;
     font-size: 14px;
-    font-weight: bold;
+    font-weight: 600;
     border: none;
     border-radius: 0;
+}
+
+/* --- NUMBER FIX (Applies to Clock, Battery, Audio, etc) --- */
+/* These modules need a font with lined-up numbers */
+#clock,
+#battery,
+#cpu,
+#memory,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#wireplumber,
+#custom-weather {
+font-family: "JetBrainsMono Nerd Font", "Roboto", sans-serif;
+font-weight: bold;
 }
 
 /* --- THE BAR --- */
