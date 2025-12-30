@@ -320,6 +320,7 @@ window-rule {
     opacity 1.0
 }
 
+
 // ────────────── Environment Variables ──────────────
 environment {
     // 1. Standard Wayland Identifiers
@@ -345,3 +346,4 @@ environment {
 hotkey-overlay {
     skip-at-startup
 }
+spawn-at-startup "antimicrox" "--tray"
