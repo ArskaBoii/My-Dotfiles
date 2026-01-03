@@ -94,7 +94,7 @@
   "clock": {
     "format": "{:%H:%M}",
     "tooltip-format": "{:%Y-%m-%d | %H:%M}",
-    "on-click": "gnome-calendar"
+    "on-click": "alacritty -e python3 ~/termcal.py"
   },
 
   "custom/cursor": {
