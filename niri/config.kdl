@@ -136,21 +136,19 @@ binds {
     MOD+PERIOD { consume-or-expel-window-right; }
     MOD+SHIFT+T { switch-focus-between-floating-and-tiling; }
 
-    // ─── Workspace Switching ───
-    MOD+WHEELSCROLLDOWN                  cooldown-ms=150 { focus-workspace-down; }
-    MOD+WHEELSCROLLUP                    cooldown-ms=150 { focus-workspace-up; }
-    MOD+CTRL+WHEELSCROLLDOWN             cooldown-ms=150 { move-column-to-workspace-down; }
-    MOD+CTRL+WHEELSCROLLUP               cooldown-ms=150 { move-column-to-workspace-up; }
+    // ─── Workspace Switching (No Mouse) ───
 
-    MOD+WHEELSCROLLRIGHT                 { focus-column-right; }
-    MOD+WHEELSCROLLLEFT                  { focus-column-left; }
-    MOD+CTRL+WHEELSCROLLRIGHT            { move-column-right; }
-    MOD+CTRL+WHEELSCROLLLEFT             { move-column-left; }
+    // Switch view to workspace up/down
+    MOD+Page_Down      { focus-workspace-down; }
+    MOD+Page_Up        { focus-workspace-up; }
 
-    MOD+SHIFT+WHEELSCROLLDOWN            { focus-column-right; }
-    MOD+SHIFT+WHEELSCROLLUP              { focus-column-left; }
-    MOD+CTRL+SHIFT+WHEELSCROLLDOWN       { move-column-right; }
-    MOD+CTRL+SHIFT+WHEELSCROLLUP         { move-column-left; }
+    // Move the active window to workspace up/down
+    MOD+CTRL+Page_Down { move-column-to-workspace-down; }
+    MOD+CTRL+Page_Up   { move-column-to-workspace-up; }
+
+    // Note: You can safely DELETE all the WHEELSCROLL lines.
+    // You already have MOD+LEFT/RIGHT and MOD+CTRL+LEFT/RIGHT
+    // defined earlier in your config for horizontal movement!
 
     MOD+1                                { focus-workspace 1; }
     MOD+2                                { focus-workspace 2; }

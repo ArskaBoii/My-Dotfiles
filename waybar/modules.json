@@ -43,7 +43,6 @@
     "tooltip-format": "{ifname} via {gwaddr}",
     "tooltip-format-wifi": "{essid} ({signalStrength}%)",
     "format-icons": ["󰤯 ", "󰤟 ", "󰤢 ", "󰤥 ", "󰤨 "],
-    // FIXED: Uses Alacritty now
     "on-click": "alacritty -e nmtui"
   },
 
@@ -83,18 +82,14 @@
     "format-plugged": " {capacity}%",
     "tooltip-format": "{capacity}% - {timeTo}",
     "format-icons": [" ", " ", " ", " ", " "],
-
-    // LEFT CLICK: Opens your new Power Profile Menu
     "on-click": "~/.config/waybar/scripts/power_profile_menu.sh",
-
-    // RIGHT CLICK: Opens the graph (Statistics)
     "on-click-right": "gnome-power-statistics"
   },
 
   "clock": {
     "format": "{:%H:%M}",
     "tooltip-format": "{:%Y-%m-%d | %H:%M}",
-    "on-click": "alacritty -e python3 ~/termcal.py"
+    "on-click": "alacritty -e /home/aarok/.termcal_env/bin/python /home/aarok/termcal.py"
   },
 
   "custom/cursor": {
